@@ -5,7 +5,17 @@
  */
 package ejb;
 
+import entity.Theaters;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,6 +24,18 @@ import javax.ejb.Stateless;
 @Stateless
 public class TheaterEJB {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext(unitName = "Project1PU")
+    private EntityManager em;
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
+
+    public List<Theaters> getTheater (String zip){
+        return em.createNamedQuery("Theaters.findByZip", Theaters.class)
+                .setParameter("zip", Integer.valueOf(zip))
+                .getResultList();
+    }
+    
+
 }

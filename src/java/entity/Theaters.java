@@ -25,10 +25,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "THEATERS")
 @NamedQueries({
-    @NamedQuery(name = "Theaters_1.findAll", query = "SELECT t FROM Theaters_1 t"),
-    @NamedQuery(name = "Theaters_1.findByZip", query = "SELECT t FROM Theaters_1 t WHERE t.zip = :zip"),
-    @NamedQuery(name = "Theaters_1.findByTheatername", query = "SELECT t FROM Theaters_1 t WHERE t.theatername = :theatername"),
-    @NamedQuery(name = "Theaters_1.findByTheateraddress", query = "SELECT t FROM Theaters_1 t WHERE t.theateraddress = :theateraddress")})
+    @NamedQuery(name = "Theaters.findAll", query = "SELECT t FROM Theaters t"),
+    @NamedQuery(name = "Theaters.findByZip", query = "SELECT t FROM Theaters t WHERE t.zip = :zip"),
+    @NamedQuery(name = "Theaters.findByTheatername", query = "SELECT t FROM Theaters t WHERE t.theatername = :theatername"),
+    @NamedQuery(name = "Theaters.findByTheateraddress", query = "SELECT t FROM Theaters t WHERE t.theateraddress = :theateraddress")})
 public class Theaters implements Serializable {
 
     private static final long serialVersionUID = 1L;

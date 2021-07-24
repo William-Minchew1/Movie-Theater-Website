@@ -20,16 +20,11 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:dataTable styleClass="theater" value="#{}" var="theater">
-                <h:column>
-                  <f:facet name="zip">
-                    <h:outputText value="75093"/>
-                  </f:facet>
-                  <h:commandLink value="Show" 
-                            action="#{showBooksBean.showAuthor(author)}">
-	          </h:commandLink>
-                </h:column>
-            </h:dataTable>   
+            <h:outputLabel styleClass="theater" value="Enter 5 digit ZIP please: " />
+                <h:inputText id="zip" value="#{theater.zip}" required="true" 
+                    validator="#{mainPageBean.validateZip}"  > 
+                </h:inputText>
+                <h:commandButton value="Enter" action="#{theater.showTheater}"/>
         </h:form>
     </h:body>
 </html>
