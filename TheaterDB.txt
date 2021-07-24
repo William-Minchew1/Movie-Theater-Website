@@ -1,0 +1,43 @@
+create table Theaters(
+Zip int not null,
+TheaterName varchar(50),
+TheaterAddress varchar(50),
+primary key (TheaterName)
+);
+
+/* insert records */
+insert into Theaters values (75034, 'AMC DINE-IN Stonebriar 24', '2601 Preston Road Ste 300 Frisco, Texas 75034');
+insert into Theaters values (75254, 'Village On The Parkway 9', '5100 Belt Line Rd, Ste 220 Addison, Texas 75254');
+insert into Theaters values (75240, 'AMC Valley View 16', '13331 Preston Rd Ste 2300 Dallas, Texas 75240');
+
+create table Movies(
+TheaterName varchar(50),
+MovieName varchar(50),
+Description varchar(1000),
+primary key (MovieName),
+foreign key (TheaterName) references Theaters(TheaterName)
+);
+
+/* insert records */
+insert into Movies values ('AMC DINE-IN Stonebriar 24', 'F9 The Fast Saga', 'F9 is the ninth chapter in the saga that has endured for almost two decades and has earned more than $5 billion around the world. Vin Diesel"s Dom Toretto is leading a quiet life off the grid with Letty and his son, little Brian, but they know that danger always lurks just over their peaceful horizon. This time, that threat will force Dom to confront the sins of his past if he"s going to save those he loves most. His crew joins together to stop a world-shattering plot led by the most skilled assassin and high-performance driver they"ve ever encountered: a man who also happens to be Dom"s forsaken brother, Jakob (John Cena, next year"s The Suicide Squad). F9 sees the return of Justin Lin as director, who helmed the third, fourth, fifth and sixth chapters of the series when it transformed into a global blockbuster.');
+insert into Movies values ('AMC DINE-IN Stonebriar 24', 'Snake Eyes', 'A legendary warrior. His epic origin story.');
+insert into Movies values ('AMC DINE-IN Stonebriar 24', 'A Quiet Place Part II', 'Following the deadly events at home, the Abbott family (Emily Blunt, Millicent Simmonds, Noah Jupe) must now face the terrors of the outside world as they continue their fight for survival in silence. Forced to venture into the unknown, they quickly realize that the creatures that hunt by sound are not the only threats that lurk beyond the sand path in this terrifyingly suspenseful thriller written and directed by John Krasinski.');
+
+
+create table ListTimes(
+MovieName varchar(50),
+ListTime varchar(10),
+primary key (MovieName, ListTime),
+foreign key (MovieName) references Movies(MovieName)
+);
+
+/* insert records */
+insert into ListTimes values ('F9 The Fast Saga', '4:00 pm');
+insert into ListTimes values ('F9 The Fast Saga', '5:00 pm');
+insert into ListTimes values ('F9 The Fast Saga', '6:00 pm');
+insert into ListTimes values ('Snake Eyes', '12:00 pm');
+insert into ListTimes values ('Snake Eyes', '1:00 pm');
+insert into ListTimes values ('Snake Eyes', '2:00 pm');
+insert into ListTimes values ('A Quiet Place Part II', '10:00 am');
+insert into ListTimes values ('A Quiet Place Part II', '11:00 am');
+insert into ListTimes values ('A Quiet Place Part II', '11:00 pm');
