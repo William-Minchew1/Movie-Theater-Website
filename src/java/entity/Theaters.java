@@ -114,7 +114,7 @@ public class Theaters implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Theaters_1[ theatername=" + theatername + " ]";
+        return "entity.Theaters[ theatername=" + theatername + " ]";
     }
     
 }
