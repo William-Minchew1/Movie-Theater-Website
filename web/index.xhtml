@@ -24,8 +24,9 @@
                 <h:inputText id="zip" value="#{theater.zip}" required="true" 
                     validator="#{mainPageBean.validateZip}"  > 
                 </h:inputText>
-                <h:commandButton value="Enter" action="#{theater.showTheater}"/>
+                <h:commandButton value="Enter" action="#{theater.showTheater()}"/>
         </h:form>
+
     </h:body>
 </html>
 

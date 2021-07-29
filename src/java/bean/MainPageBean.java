@@ -6,6 +6,8 @@
 package bean;
 
 import ejb.TheaterEJB;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -43,4 +45,6 @@ public class MainPageBean {
             throw new ValidatorException(message);
         }
     }
+    
+    
 }

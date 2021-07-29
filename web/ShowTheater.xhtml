@@ -26,13 +26,25 @@ and open the template in the editor.
     <body>
         <f:view>
             <h:form>
-            <h:dataTable id="table" styleClass="theater" value="#{theater.theaterList}" var="theater">
+            <h:dataTable id="table" styleClass="theater" value="#{theater.theaterList}" var="theaterVar">
                 <h:column>
-                   <f:facet name="zip">
-
+                   <f:facet name="header">
+                       <h:outputText value="Select"/>
                   </f:facet>
-                  <h:commandLink value="Show" action="#{showBooksBean.showAuthor(author)}">
+                    <h:commandLink value="Show" action="#{moviesBean.showMovies(theaterVar)}">
                   </h:commandLink>
+                </h:column>
+                <h:column> 
+                    <f:facet name ="header">
+                        <h:outputText value="Theater Name"/>
+                    </f:facet>
+                    <h:outputText value="#{theater.getTheaterName()}"/>
+                </h:column>
+                <h:column> 
+                    <f:facet name ="header">
+                        <h:outputText value="Theater Address"/>
+                    </f:facet>
+                    <h:outputText value="#{theater.getTheaterAddress()}"/>
                 </h:column>
             </h:dataTable>
             </h:form>

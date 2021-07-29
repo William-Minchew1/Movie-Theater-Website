@@ -7,18 +7,22 @@ package bean;
 
 import ejb.TheaterEJB;
 import entity.Theaters;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Will
  */
 @Named(value = "theater")
-@RequestScoped
-public class Theater {
+@SessionScoped
+public class Theater implements Serializable{
 
     @EJB
     private TheaterEJB theaterEJB;
@@ -49,12 +53,23 @@ public class Theater {
     }
     
     public String showTheater(){
-        this.theater = theaterEJB.getTheater(zip);
-        return "ShowTheater.xhtml";
+        this.theater = theaterEJB.getTheater(this.zip);
+        return "ShowTheater.xhtml?faces-redirect=true";
+    }
+    
+    public String getTheaterName(){
+        return theater.get(0).getTheatername();
+    }
+    
+    public String getTheaterAddress(){
+        return theater.get(0).getTheateraddress();
     }
     
     public List<Theaters> getTheaterList(){
-        return theaterEJB.getTheater(zip);
+        if(!zip.equals(""))
+            return theaterEJB.getTheater(zip);
+        else
+            return null;
     }
     
     public String returnToZip(){

@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import entity.Movies;
 import entity.Theaters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +35,12 @@ public class TheaterEJB {
     public List<Theaters> getTheater (String zip){
         return em.createNamedQuery("Theaters.findByZip", Theaters.class)
                 .setParameter("zip", Integer.valueOf(zip))
+                .getResultList();
+    }
+    
+    public List<Movies> getMovies(Theaters theaterName){
+        return em.createNamedQuery("Movies.findByTheaterName", Movies.class)
+                .setParameter("theatername", theaterName)
                 .getResultList();
     }
     
