@@ -6,24 +6,30 @@
 package bean;
 
 import ejb.TheaterEJB;
+import entity.Listtimes;
 import entity.Movies;
 import entity.Theaters;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Will
  */
 @Named(value = "moviesBean")
-@RequestScoped
-public class MoviesBean {
+@SessionScoped
+public class MoviesBean implements Serializable{
 
     @EJB
     private TheaterEJB theaterEJB;
-    private List<Movies> movies;
+    private Collection<Movies> movies;
+    private Movies movie;
+    private Theaters theater;
 
     /**
      * Creates a new instance of MoviesBean
@@ -31,27 +37,34 @@ public class MoviesBean {
     public MoviesBean() {
     }
 
-    public List<Movies> getMovies() {
+    public Collection<Movies> getMovies() {
         return movies;
     }
-
-    public String getMovieName() {
-        return movies.get(0).getMoviename();
-    }
-//    public List<Movies> getMovieList() {
-//        if (!zip.equals("")) {
-//            return theaterEJB.getMovie(theaterName);
-//        } else {
-//            return null;
-//        }
-//    }
 
     public void setMovies(List<Movies> movies) {
         this.movies = movies;
     }
 
     public String showMovies(Theaters theater) {
-        this.movies = theaterEJB.getMovies(theater);
+        this.theater = theater;
         return "ShowMovies.xhtml?faces-redirect=true";
     }
+    
+    public String getMovieName(){
+        return movie.getMoviename();
+    }
+    
+    public Collection<Movies> getMovieList(){
+            return theater.getMoviesCollection();
+    }
+    
+    public String showListTimes(Movies movie){
+        this.movie = movie;
+        return "ShowListTimes.xhtml?faces-redirect=true";
+    }
+    
+    public Collection<Listtimes> getListTimesList(){
+            return movie.getListtimesCollection();
+    }
+    
 }

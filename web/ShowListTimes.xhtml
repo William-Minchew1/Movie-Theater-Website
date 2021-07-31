@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
       <style type="text/css">
-        table.movie td {
+        table.time td {
             padding: 5px;
             text-align: left;
             font-family: Arial, Verdana, sans-serif;
@@ -26,25 +26,25 @@ and open the template in the editor.
     <body>
         <f:view>
             <h:form>
-                <h:dataTable id="table" styleClass="movie" value="#{moviesBean.movieList}" var="movie">
+                <h:dataTable id="table" styleClass="time" value="#{moviesBean.getListTimesList()}" var="listtime">
                 <h:column>
                     <f:facet name="header">
                        <h:outputText value="Select"/>
                   </f:facet>
-                  <h:commandLink value="Show" action="#{moviesBean.showListTimes(movie)}">
+                  <h:commandLink value="Show" action="#{moviesBean.showMovies(movie)}">
                   </h:commandLink>
                 </h:column>
                 <h:column> 
                     <f:facet name ="header">
                         <h:outputText value="Movie Name"/>
                     </f:facet>
-                    <h:outputText value="#{movie.moviename}"/>
+                    <h:outputText value="#{listtime.listtimesPK.moviename}"/>
                 </h:column>
                 <h:column> 
                     <f:facet name ="header">
-                        <h:outputText value="Movie Description"/>
+                        <h:outputText value="Listtime"/>
                     </f:facet>
-                    <h:outputText value="#{movie.description}"/>
+                    <h:outputText value="#{listtime.listtimesPK.listtime}"/>
                 </h:column>
             </h:dataTable>
             </h:form>
