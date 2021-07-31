@@ -32,17 +32,19 @@ public class TheaterEJB {
         em.persist(object);
     }
 
-    public List<Theaters> getTheater (String zip){
+    public List<Theaters> getTheater(String zip) {
         return em.createNamedQuery("Theaters.findByZip", Theaters.class)
                 .setParameter("zip", Integer.valueOf(zip))
                 .getResultList();
     }
-    
-    public List<Movies> getMovies(Theaters theaterName){
+
+    public List<Movies> getMovies(Theaters theaterName) {
         return em.createNamedQuery("Movies.findByTheaterName", Movies.class)
                 .setParameter("theatername", theaterName)
                 .getResultList();
     }
-    
 
+    public List<Movies> findAllMovies() {
+        return em.createNamedQuery("Movies.findAll", Movies.class).getResultList();
+    }
 }

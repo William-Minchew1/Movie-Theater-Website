@@ -24,22 +24,33 @@ public class MoviesBean {
     @EJB
     private TheaterEJB theaterEJB;
     private List<Movies> movies;
-    
+
     /**
      * Creates a new instance of MoviesBean
      */
-    public MoviesBean(){
+    public MoviesBean() {
     }
-    
+
     public List<Movies> getMovies() {
         return movies;
     }
 
+    public String getMovieName() {
+        return movies.get(0).getMoviename();
+    }
+//    public List<Movies> getMovieList() {
+//        if (!zip.equals("")) {
+//            return theaterEJB.getMovie(theaterName);
+//        } else {
+//            return null;
+//        }
+//    }
+
     public void setMovies(List<Movies> movies) {
         this.movies = movies;
     }
-    
-    public String showMovies(Theaters theater){
+
+    public String showMovies(Theaters theater) {
         this.movies = theaterEJB.getMovies(theater);
         return "ShowMovies.xhtml?faces-redirect=true";
     }
