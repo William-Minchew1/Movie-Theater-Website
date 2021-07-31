@@ -20,11 +20,33 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:outputLabel styleClass="theater" value="Enter 5 digit ZIP please: " />
+            <h:outputLabel styleClass="theater" value="Enter 5 digit ZIP to search for your Theater: " />
                 <h:inputText id="zip" value="#{theater.zip}" required="true" 
                     validator="#{mainPageBean.validateZip}"  > 
                 </h:inputText>
-                <h:commandButton value="Enter" action="#{theater.showTheater()}"/>
+                <h:commandButton value="Enter" action="#{theater.showTheater()}"/> <br />
+                <h:outputLabel styleClass="theater" value="Or Search from the list of Theaters below: " /> <br />
+                <h:dataTable id="table" styleClass="theater" value="#{mainPageBean.allTheaters}" var="theaterVar">
+                <h:column>
+                   <f:facet name="header">
+                       <h:outputText value="Select"/>
+                  </f:facet>
+                    <h:commandLink value="Show" action="#{moviesBean.showMovies(theaterVar)}">
+                  </h:commandLink>
+                </h:column>
+                <h:column> 
+                    <f:facet name ="header">
+                        <h:outputText value="Theater Name"/>
+                    </f:facet>
+                    <h:outputText value="#{theaterVar.theatername}"/>
+                </h:column>
+                <h:column> 
+                    <f:facet name ="header">
+                        <h:outputText value="Theater Address"/>
+                    </f:facet>
+                    <h:outputText value="#{theaterVar.theateraddress}"/>
+                </h:column>
+            </h:dataTable>
         </h:form>
 
     </h:body>

@@ -6,8 +6,10 @@
 package bean;
 
 import ejb.TheaterEJB;
+import entity.Theaters;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -44,6 +46,10 @@ public class MainPageBean {
             FacesMessage message = new FacesMessage("Please enter a 5 digit zip");
             throw new ValidatorException(message);
         }
+    }
+    
+    public List<Theaters> getAllTheaters(){
+        return theaterEJB.getAllTheaters();
     }
     
     

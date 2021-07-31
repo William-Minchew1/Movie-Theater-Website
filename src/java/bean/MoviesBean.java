@@ -40,6 +40,10 @@ public class MoviesBean implements Serializable{
     public Collection<Movies> getMovies() {
         return movies;
     }
+    
+    public Movies getCurrentMovie(){
+        return movie;
+    }
 
     public void setMovies(List<Movies> movies) {
         this.movies = movies;
