@@ -7,8 +7,6 @@ package bean;
 
 import ejb.TheaterEJB;
 import entity.Theaters;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -35,6 +33,12 @@ public class MainPageBean {
     public MainPageBean() {
     }
     
+    /**
+    * Validates that the user enters a 5 digit zip and we have a theater in said zip
+     * @param context
+     * @param toValidate
+     * @param value
+    */
     public void validateZip(FacesContext context, UIComponent toValidate,
         Object value) throws ValidatorException {
         String zip = (String) value;
@@ -54,6 +58,10 @@ public class MainPageBean {
         }
     }
     
+    /**
+     * Returns all theaters within our database.
+     * @return 
+     */
     public List<Theaters> getAllTheaters(){
         return theaterEJB.getAllTheaters();
     }

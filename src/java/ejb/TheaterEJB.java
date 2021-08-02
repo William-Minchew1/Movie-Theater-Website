@@ -5,16 +5,9 @@
  */
 package ejb;
 
-import entity.Movies;
 import entity.Theaters;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -32,18 +25,21 @@ public class TheaterEJB {
         em.persist(object);
     }
 
+    /**
+     * Returns a list of Theaters objects using zip and a namedquery to search the database
+     * @param zip String used to search
+     * @return List of theaters
+     */
     public List<Theaters> getTheater(String zip) {
         return em.createNamedQuery("Theaters.findByZip", Theaters.class)
                 .setParameter("zip", Integer.valueOf(zip))
                 .getResultList();
     }
-
-    public List<Movies> getMovies(Theaters theaterName) {
-        return em.createNamedQuery("Movies.findByTheaterName", Movies.class)
-                .setParameter("theatername", theaterName)
-                .getResultList();
-    }
     
+    /**
+     * Returns a list of all theaters in the database
+     * @return List of all theaters
+     */
     public List<Theaters> getAllTheaters(){
         return em.createNamedQuery("Theaters.findAll", Theaters.class)
                 .getResultList();

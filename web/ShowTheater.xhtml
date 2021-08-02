@@ -15,6 +15,7 @@ and open the template in the editor.
     <h:body styleClass="background">
         <f:view>
             <h:form>
+            #{theater.reset()}
             <center>
             <h:dataTable id="table" value="#{theater.theaterList}" var="theaterVar"
                          styleClass="movieTable"

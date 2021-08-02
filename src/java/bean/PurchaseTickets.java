@@ -11,14 +11,12 @@ import entity.Movies;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import java.util.Random;
-import static javax.ws.rs.client.Entity.html;
 
 /**
  *
@@ -44,38 +42,77 @@ public class PurchaseTickets implements Serializable {
     public PurchaseTickets() {
     }
 
+    /**
+     * Returns card number
+     * @return 
+     */
     public String getCard() {
         return card;
     }
 
+    /**
+     * Sets card number to given
+     * @param card 
+     */
     public void setCard(String card) {
         this.card = card;
     }
 
+    /**
+     * Returns current listtime object
+     * @return 
+     */
     public Listtimes getTime() {
         return time;
     }
 
+    /**
+     * Sets the current listtime object to the given one
+     * @param time listtimes object given 
+     */
     public void setTime(Listtimes time) {
         this.time = time;
     }
 
+    /**
+     * Returns current movie object
+     * @return 
+     */
     public Movies getMovie() {
         return movie;
     }
 
+    /**
+     * Sets the current movie object to the given
+     * @param movie 
+     */
     public void setMovie(Movies movie) {
         this.movie = movie;
     }
     
+    /**
+     * Returns the current number of tickets
+     * @return 
+     */
     public String getTicketNum() {
         return ticketNum;
     }
 
+    /**
+     * Sets the current ticket number to the given
+     * @param ticketNum given number of tickets
+     */
     public void setTicketNum(String ticketNum) {
         this.ticketNum = ticketNum;
     }
     
+    /**
+     * Validates that the given card string is a 16 digit number
+     * @param context
+     * @param toValidate
+     * @param value
+     * @throws ValidatorException 
+     */
     public void validateCard(FacesContext context, UIComponent toValidate,
             Object value) throws ValidatorException {
         String cardNum = (String) value;
@@ -89,6 +126,13 @@ public class PurchaseTickets implements Serializable {
         }
     }
 
+    /**
+     * Validates that the given ticketNum string is an Integer 
+     * @param context
+     * @param toValidate
+     * @param value
+     * @throws ValidatorException 
+     */
     public void validateNum(FacesContext context, UIComponent toValidate,
             Object value) throws ValidatorException {
         String ticketsNum = (String) value;
@@ -103,15 +147,29 @@ public class PurchaseTickets implements Serializable {
             }
 
     }
+    
+    /**
+     * Sets the current listtime object to the given and returns link to next page
+     * @param listtime listtime object to be used on the next page
+     * @return Link to the PurchaseTickets page
+     */
     public String showPurchase(Listtimes listtime) {
         time = listtime;
         return "PurchaseTickets.xhtml?faces-redirect=true";
     }
 
+    /**
+     * Returns link to next page
+     * @return Link to the ThankYou page
+     */
     public String showThankYou() {
         return "ThankYou.xhtml?faces-redirect=true";
     }
 
+    /**
+     * Creates a string which is then returned as part of the display thanking the user for their purchase
+     * @return Part 1 of string to be displayed on ThankYou.xhtml
+     */
     public String displayThankYou() {
         String message = "Thank you for purchasing ticket(s) for ";
         message += time.getListtimesPK().getMoviename() + " at " + time.getListtimesPK().getListtime()
@@ -120,11 +178,19 @@ public class PurchaseTickets implements Serializable {
 
         return message;
     }
-
+    
+    /**
+     * Creates a string which is then returned as part of the display thanking the user for their purchase
+     * @return Part 2 of string to be displayed on ThankYou.xhtml
+     */
     public String displayThankYou2() {
         return "Please print this page and bring it to your theater with the ticket number below.";
     }
 
+    /**
+     * Creates a string which is then returned as part of the display thanking the user for their purchase
+     * @return Part 3 of string to be displayed on ThankYou.xhtml
+     */
     public String displayThankYou3() {
         int seatNum = ranNum.nextInt(100);
         String seatString = "Seat Number(s): " + String.valueOf(seatNum);
@@ -137,6 +203,10 @@ public class PurchaseTickets implements Serializable {
         return seatString;
     }
 
+    /**
+     * Creates a string which is then returned as part of the display thanking the user for their purchase
+     * @return Part 4 of string to be displayed on ThankYou.xhtml
+     */
     public String displayThankYou4() {
         int ticketId = ranNum.nextInt(1000000);
         String idString = "Ticket ID(s): " + String.valueOf(ticketId);
