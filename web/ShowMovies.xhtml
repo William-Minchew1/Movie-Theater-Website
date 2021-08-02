@@ -8,21 +8,11 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-      <style type="text/css">
-        table.movie td {
-            padding: 5px;
-            text-align: left;
-            font-family: Arial, Verdana, sans-serif;
-            border: 1px solid #000; 
-            background-color: #A4FFFF;    
-            color: #BB0000;    
-            border-bottom: 2px solid #000;
-         }   
-       </style>
-    <head>
+    
+    <h:head>
         <title>Movie List</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+        <h:outputStylesheet library = "css" name = "table.css"  /> 
+    </h:head>
     <body>
         <f:view>
             <h:form>

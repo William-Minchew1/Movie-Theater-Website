@@ -7,17 +7,24 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head>
+    <h:head>
         <title>Purchase a Ticket</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+        <h:outputStylesheet library = "css" name = "table.css"  /> 
+    </h:head>
     <body>
         <h:form>
+        <center><h1>
         <h:outputLabel value="Enter 16 digit Card number please: " />
+        </h1></center>
+            <center>
             <h:inputText id="card" value="#{purchaseTickets.card}" required="true" 
                     validator="#{purchaseTickets.validateCard}"  > 
             </h:inputText>
+            </center>
+        <center>
         <h:commandButton value="Enter" action="#{purchaseTickets.showThankYou()}"/>
+        </center>
+            <br/> <br/>
         </h:form>
     </body>
 </html>

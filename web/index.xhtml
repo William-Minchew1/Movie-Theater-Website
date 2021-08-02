@@ -10,30 +10,41 @@
     </h:head>
     <h:body styleClass="background">
         <h:form>
-            
+            <center><h1>
             <h:outputLabel styleClass="text" value="Enter 5 digit ZIP to search for your Theater: " />
+            </h1></center>
+                <center>
                 <h:inputText id="zip" value="#{theater.zip}" required="true" 
                     validator="#{mainPageBean.validateZip}"  > 
                 </h:inputText>
-                <h:commandButton value="Enter" action="#{theater.showTheater()}"/> <br />
-                <h:outputLabel styleClass="text" value="Or Search from the list of Theaters below: " /> <br />
+<!--                </center>
+                <center>-->
+                <h:commandButton value="Enter" action="#{theater.showTheater()}"/> 
+                </center>
+                <br/> <br/>
+                <center>
+                <h:outputLabel styleClass="text" value="Or Search from the list of Theaters below: " />
+                </center><br />
+                
+                <center>
                 <h:dataTable id="table" value="#{mainPageBean.allTheaters}" var="theaterVar"
                              styleClass="movieTable"
                              headerClass="movieTableHeader"
                              rowClasses="movieTableOddRow,movieTableEvenRow">
-                <h:column> 
-                    <f:facet name ="header">
-                        <h:outputText value="Theater Name"/>
-                    </f:facet>
-                    <h:outputText value="#{theaterVar.theatername}"/>
-                </h:column>
-                <h:column> 
-                    <f:facet name ="header">
-                        <h:outputText value="Theater Address"/>
-                    </f:facet>
-                    <h:outputText value="#{theaterVar.theateraddress}"/>
-                </h:column>
-            </h:dataTable>
+                    <h:column> 
+                        <f:facet name ="header">
+                            <h:outputText value="Theater Name"/>
+                        </f:facet>
+                        <h:outputText value="#{theaterVar.theatername}"/>
+                    </h:column>
+                    <h:column> 
+                        <f:facet name ="header">
+                            <h:outputText value="Theater Address"/>
+                        </f:facet>
+                        <h:outputText value="#{theaterVar.theateraddress}"/>
+                    </h:column>
+                </h:dataTable>
+                </center>
 
         </h:form>
 

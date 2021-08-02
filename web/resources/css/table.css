@@ -13,10 +13,16 @@ and open the template in the editor.
 }
 .text{
     color: white;
+    font-family: sans-serif;
 }
 .movieTable {   
-   border-collapse:collapse;
-   border:1px solid #000000;
+   /*border-collapse:collapse;*/
+   border-collapse:separate; 
+   border-spacing:2em;
+   /*border:3px solid #000000;*/
+   padding: 10px;
+   border-radius: 5px;
+
 }
 
 .movieTableHeader {
@@ -24,15 +30,41 @@ and open the template in the editor.
    background:none repeat scroll 0 0 #FFFFFF;
    border-bottom:1px solid #000000;  
    padding:5px;
+   border-radius: 5px;
+   /*font-size: ;*/
+
 }
 
-.movieTableOddRow {
-   color: white;
-   text-align:center;
-   background:none repeat scroll 0 0 #B22222;	
+body {
+    background-color: #FFCBAA;
+    font-family: sans-serif;
 }
 
-.movieTableEvenRow {
-   text-align:center;
-   background:none repeat scroll 0 0 #D3D3D3;
+h1 {
+    font-size: 2em;
+    font-family: sans-serif;
+
 }
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 0.5em;
+
+}
+
+tr {
+    font-size: 1.2em;
+    font-family: sans-serif;
+    color: #961313;
+}
+
+tr td {
+  padding: 15px 20px;
+  background-color: rgba(255, 238, 227, .93);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+}
+
