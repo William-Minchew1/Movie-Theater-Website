@@ -6,34 +6,21 @@
     
     <h:head>
         <title>Movie Theater</title>
-        <style type="text/css">
-         table.theater td {
-             padding: 5px;
-             text-align: left;
-             font-family: Arial, Verdana, sans-serif;
-             border: 1px solid #000; 
-             background-color: #A4FFFF;    
-             color: #BB0000;    
-             border-bottom: 2px solid #000;
-         }   
-        </style>
+        <h:outputStylesheet library = "css" name = "table.css"  /> 
     </h:head>
-    <h:body>
+    <h:body styleClass="background">
         <h:form>
-            <h:outputLabel styleClass="theater" value="Enter 5 digit ZIP to search for your Theater: " />
+            
+            <h:outputLabel styleClass="text" value="Enter 5 digit ZIP to search for your Theater: " />
                 <h:inputText id="zip" value="#{theater.zip}" required="true" 
                     validator="#{mainPageBean.validateZip}"  > 
                 </h:inputText>
                 <h:commandButton value="Enter" action="#{theater.showTheater()}"/> <br />
-                <h:outputLabel styleClass="theater" value="Or Search from the list of Theaters below: " /> <br />
-                <h:dataTable id="table" styleClass="theater" value="#{mainPageBean.allTheaters}" var="theaterVar">
-                <h:column>
-                   <f:facet name="header">
-                       <h:outputText value="Select"/>
-                  </f:facet>
-                    <h:commandLink value="Show" action="#{moviesBean.showMovies(theaterVar)}">
-                  </h:commandLink>
-                </h:column>
+                <h:outputLabel styleClass="text" value="Or Search from the list of Theaters below: " /> <br />
+                <h:dataTable id="table" value="#{mainPageBean.allTheaters}" var="theaterVar"
+                             styleClass="movieTable"
+                             headerClass="movieTableHeader"
+                             rowClasses="movieTableOddRow,movieTableEvenRow">
                 <h:column> 
                     <f:facet name ="header">
                         <h:outputText value="Theater Name"/>
@@ -47,6 +34,7 @@
                     <h:outputText value="#{theaterVar.theateraddress}"/>
                 </h:column>
             </h:dataTable>
+
         </h:form>
 
     </h:body>
