@@ -34,6 +34,9 @@ public class PurchaseTickets implements Serializable {
     private Listtimes time;
     private Movies movie;
     private Random ranNum = new Random();
+    private String ticketNum;
+
+    
 
     /**
      * Creates a new instance of PurchaseTicket
@@ -64,7 +67,15 @@ public class PurchaseTickets implements Serializable {
     public void setMovie(Movies movie) {
         this.movie = movie;
     }
+    
+    public String getTicketNum() {
+        return ticketNum;
+    }
 
+    public void setTicketNum(String ticketNum) {
+        this.ticketNum = ticketNum;
+    }
+    
     public void validateCard(FacesContext context, UIComponent toValidate,
             Object value) throws ValidatorException {
         String cardNum = (String) value;
@@ -78,6 +89,20 @@ public class PurchaseTickets implements Serializable {
         }
     }
 
+    public void validateNum(FacesContext context, UIComponent toValidate,
+            Object value) throws ValidatorException {
+        String ticketsNum = (String) value;
+        try { 
+            Integer.parseInt(ticketsNum); 
+            } catch(NumberFormatException e) { 
+                FacesMessage message = new FacesMessage("Please enter an whole number");
+            throw new ValidatorException(message);
+            } catch(NullPointerException e) {
+                FacesMessage message = new FacesMessage("Please enter a number");
+            throw new ValidatorException(message);
+            }
+
+    }
     public String showPurchase(Listtimes listtime) {
         time = listtime;
         return "PurchaseTickets.xhtml?faces-redirect=true";
@@ -88,9 +113,10 @@ public class PurchaseTickets implements Serializable {
     }
 
     public String displayThankYou() {
-        String message = "Thank you for purchasing a ticket for ";
+        String message = "Thank you for purchasing ticket(s) for ";
         message += time.getListtimesPK().getMoviename() + " at " + time.getListtimesPK().getListtime()
-                + " at " + time.getMovies().getTheatername().getTheatername();
+                + " at " + time.getMovies().getMoviesPK().getTheatername() 
+                + " for $" + String.valueOf(Integer.parseInt(ticketNum) * 10);
 
         return message;
     }
@@ -100,10 +126,26 @@ public class PurchaseTickets implements Serializable {
     }
 
     public String displayThankYou3() {
-        return "Seat Number: " + String.valueOf(ranNum.nextInt(100));
+        int seatNum = ranNum.nextInt(100);
+        String seatString = "Seat Number(s): " + String.valueOf(seatNum);
+        int tempNum = Integer.parseInt(ticketNum);
+        tempNum -= 1;
+        while(tempNum  != 0){
+            seatString += ", " + String.valueOf(seatNum += 1);
+            tempNum -= 1;
+        }
+        return seatString;
     }
 
     public String displayThankYou4() {
-        return "Ticket ID: " + String.valueOf(ranNum.nextInt(1000000));
+        int ticketId = ranNum.nextInt(1000000);
+        String idString = "Ticket ID(s): " + String.valueOf(ticketId);
+        int tempNum = Integer.parseInt(ticketNum);
+        tempNum -= 1;
+        while(tempNum != 0){
+            idString += ", " + String.valueOf(ticketId += 1);
+            tempNum -= 1;
+        }
+        return idString;
     }
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,13 +24,16 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Listtimes.findAll", query = "SELECT l FROM Listtimes l"),
     @NamedQuery(name = "Listtimes.findByMoviename", query = "SELECT l FROM Listtimes l WHERE l.listtimesPK.moviename = :moviename"),
-    @NamedQuery(name = "Listtimes.findByListtime", query = "SELECT l FROM Listtimes l WHERE l.listtimesPK.listtime = :listtime")})
+    @NamedQuery(name = "Listtimes.findByListtime", query = "SELECT l FROM Listtimes l WHERE l.listtimesPK.listtime = :listtime"),
+    @NamedQuery(name = "Listtimes.findByTheatername", query = "SELECT l FROM Listtimes l WHERE l.listtimesPK.theatername = :theatername")})
 public class Listtimes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ListtimesPK listtimesPK;
-    @JoinColumn(name = "MOVIENAME", referencedColumnName = "MOVIENAME", insertable = false, updatable = false)
+    @JoinColumns({
+        @JoinColumn(name = "MOVIENAME", referencedColumnName = "MOVIENAME", insertable = false, updatable = false),
+        @JoinColumn(name = "THEATERNAME", referencedColumnName = "THEATERNAME", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Movies movies;
 
@@ -40,8 +44,8 @@ public class Listtimes implements Serializable {
         this.listtimesPK = listtimesPK;
     }
 
-    public Listtimes(String moviename, String listtime) {
-        this.listtimesPK = new ListtimesPK(moviename, listtime);
+    public Listtimes(String moviename, String listtime, String theatername) {
+        this.listtimesPK = new ListtimesPK(moviename, listtime, theatername);
     }
 
     public ListtimesPK getListtimesPK() {

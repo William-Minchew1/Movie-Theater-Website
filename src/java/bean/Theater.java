@@ -35,7 +35,7 @@ public class Theater implements Serializable{
     public Theater() {
         zip = "";
     }
-
+    
     public List<Theaters> getTheater() {
         return theater;
     }
@@ -74,5 +74,10 @@ public class Theater implements Serializable{
     
     public String returnToZip(){
         return "index.xhtml";
+    }
+    
+    public void clear(){
+        this.theater = theaterEJB.getTheater("75034");
+        zip = "";
     }
 }

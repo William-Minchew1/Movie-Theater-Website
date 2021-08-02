@@ -21,7 +21,7 @@ and open the template in the editor.
                     <f:facet name="header">
                        <h:outputText value="Select"/>
                   </f:facet>
-                  <h:commandLink value="Purchase A Ticket" action="#{purchaseTickets.showPurchase(listtime)}">
+                  <h:commandLink value="Purchase Tickets" action="#{purchaseTickets.showPurchase(listtime)}">
                   </h:commandLink>
                 </h:column>
                 <h:column> 
@@ -35,6 +35,12 @@ and open the template in the editor.
                         <h:outputText value="Showing Time"/>
                     </f:facet>
                     <h:outputText value="#{listtime.listtimesPK.listtime}"/>
+                </h:column>
+                    <h:column> 
+                    <f:facet name ="header">
+                        <h:outputText value="Showing Theater"/>
+                    </f:facet>
+                        <h:outputText value="#{listtime.movies.moviesPK.theatername}"/>
                 </h:column>
             </h:dataTable>
             </center>

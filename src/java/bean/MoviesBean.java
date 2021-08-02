@@ -10,7 +10,10 @@ import entity.Listtimes;
 import entity.Movies;
 import entity.Theaters;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -55,7 +58,7 @@ public class MoviesBean implements Serializable{
     }
     
     public String getMovieName(){
-        return movie.getMoviename();
+        return movie.getMoviesPK().getMoviename();
     }
     
     public Collection<Movies> getMovieList(){
@@ -67,8 +70,13 @@ public class MoviesBean implements Serializable{
         return "ShowListTimes.xhtml?faces-redirect=true";
     }
     
-    public Collection<Listtimes> getListTimesList(){
+    public Collection<Listtimes> getListTimesList(){          
             return movie.getListtimesCollection();
     }
     
+    public void clear(){
+        
+    }
+    
 }
+

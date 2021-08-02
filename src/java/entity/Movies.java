@@ -7,18 +7,16 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -29,40 +27,40 @@ import javax.validation.constraints.Size;
 @Table(name = "MOVIES")
 @NamedQueries({
     @NamedQuery(name = "Movies.findAll", query = "SELECT m FROM Movies m"),
-    @NamedQuery(name = "Movies.findByMoviename", query = "SELECT m FROM Movies m WHERE m.moviename = :moviename"),
-    @NamedQuery(name = "Movies.findByDescription", query = "SELECT m FROM Movies m WHERE m.description = :description"),
-    @NamedQuery(name = "Movies.findByTheaterName", query = "SELECT m FROM Movies m WHERE m.theatername = :theatername")})
+    @NamedQuery(name = "Movies.findByTheatername", query = "SELECT m FROM Movies m WHERE m.moviesPK.theatername = :theatername"),
+    @NamedQuery(name = "Movies.findByMoviename", query = "SELECT m FROM Movies m WHERE m.moviesPK.moviename = :moviename"),
+    @NamedQuery(name = "Movies.findByDescription", query = "SELECT m FROM Movies m WHERE m.description = :description")})
 public class Movies implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "MOVIENAME")
-    private String moviename;
+    @EmbeddedId
+    protected MoviesPK moviesPK;
     @Size(max = 1000)
     @Column(name = "DESCRIPTION")
     private String description;
-    @JoinColumn(name = "THEATERNAME", referencedColumnName = "THEATERNAME")
-    @ManyToOne
-    private Theaters theatername;
+    @JoinColumn(name = "THEATERNAME", referencedColumnName = "THEATERNAME", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Theaters theaters;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movies")
     private Collection<Listtimes> listtimesCollection;
 
     public Movies() {
     }
 
-    public Movies(String moviename) {
-        this.moviename = moviename;
+    public Movies(MoviesPK moviesPK) {
+        this.moviesPK = moviesPK;
     }
 
-    public String getMoviename() {
-        return moviename;
+    public Movies(String theatername, String moviename) {
+        this.moviesPK = new MoviesPK(theatername, moviename);
     }
 
-    public void setMoviename(String moviename) {
-        this.moviename = moviename;
+    public MoviesPK getMoviesPK() {
+        return moviesPK;
+    }
+
+    public void setMoviesPK(MoviesPK moviesPK) {
+        this.moviesPK = moviesPK;
     }
 
     public String getDescription() {
@@ -73,12 +71,12 @@ public class Movies implements Serializable {
         this.description = description;
     }
 
-    public Theaters getTheatername() {
-        return theatername;
+    public Theaters getTheaters() {
+        return theaters;
     }
 
-    public void setTheatername(Theaters theatername) {
-        this.theatername = theatername;
+    public void setTheaters(Theaters theaters) {
+        this.theaters = theaters;
     }
 
     public Collection<Listtimes> getListtimesCollection() {
@@ -92,7 +90,7 @@ public class Movies implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (moviename != null ? moviename.hashCode() : 0);
+        hash += (moviesPK != null ? moviesPK.hashCode() : 0);
         return hash;
     }
 
@@ -103,7 +101,7 @@ public class Movies implements Serializable {
             return false;
         }
         Movies other = (Movies) object;
-        if ((this.moviename == null && other.moviename != null) || (this.moviename != null && !this.moviename.equals(other.moviename))) {
+        if ((this.moviesPK == null && other.moviesPK != null) || (this.moviesPK != null && !this.moviesPK.equals(other.moviesPK))) {
             return false;
         }
         return true;
@@ -111,7 +109,7 @@ public class Movies implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Movies[ moviename=" + moviename + " ]";
+        return "entity.Movies[ moviesPK=" + moviesPK + " ]";
     }
     
 }

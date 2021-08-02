@@ -29,13 +29,19 @@ public class ListtimesPK implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "LISTTIME")
     private String listtime;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "THEATERNAME")
+    private String theatername;
 
     public ListtimesPK() {
     }
 
-    public ListtimesPK(String moviename, String listtime) {
+    public ListtimesPK(String moviename, String listtime, String theatername) {
         this.moviename = moviename;
         this.listtime = listtime;
+        this.theatername = theatername;
     }
 
     public String getMoviename() {
@@ -54,11 +60,20 @@ public class ListtimesPK implements Serializable {
         this.listtime = listtime;
     }
 
+    public String getTheatername() {
+        return theatername;
+    }
+
+    public void setTheatername(String theatername) {
+        this.theatername = theatername;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (moviename != null ? moviename.hashCode() : 0);
         hash += (listtime != null ? listtime.hashCode() : 0);
+        hash += (theatername != null ? theatername.hashCode() : 0);
         return hash;
     }
 
@@ -75,12 +90,15 @@ public class ListtimesPK implements Serializable {
         if ((this.listtime == null && other.listtime != null) || (this.listtime != null && !this.listtime.equals(other.listtime))) {
             return false;
         }
+        if ((this.theatername == null && other.theatername != null) || (this.theatername != null && !this.theatername.equals(other.theatername))) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "entity.ListtimesPK[ moviename=" + moviename + ", listtime=" + listtime + " ]";
+        return "entity.ListtimesPK[ moviename=" + moviename + ", listtime=" + listtime + ", theatername=" + theatername + " ]";
     }
     
 }

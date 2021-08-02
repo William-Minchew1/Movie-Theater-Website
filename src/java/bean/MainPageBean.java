@@ -40,7 +40,13 @@ public class MainPageBean {
         String zip = (String) value;
         String regex = "\\d{5}";
         if(zip.matches(regex)){
+            if(zip.equals("75034") || zip.equals("75254") || zip.equals(75240)){
             
+            }
+            else{
+                FacesMessage message = new FacesMessage("Sorry there is no theater in that zip");
+                throw new ValidatorException(message);
+            }
         }
         else{
             FacesMessage message = new FacesMessage("Please enter a 5 digit zip");
