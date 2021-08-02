@@ -31,9 +31,13 @@ and open the template in the editor.
                     <f:facet name="header">
                        <h:outputText value="Select"/>
                   </f:facet>
-                  <h:commandLink value="Show" action="#{moviesBean.showListTimes(movie)}">
+                  <h:commandLink value="Get Tickets" action="#{moviesBean.showListTimes(movie)}">
                   </h:commandLink>
                 </h:column>
+                    <h:column>
+                        <img src="image/#{movie.moviename}.jpg" >
+                        </img>
+                    </h:column>
                 <h:column> 
                     <f:facet name ="header">
                         <h:outputText value="Movie Name"/>

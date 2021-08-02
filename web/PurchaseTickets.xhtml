@@ -14,10 +14,10 @@ and open the template in the editor.
     <body>
         <h:form>
         <h:outputLabel value="Enter 16 digit Card number please: " />
-            <h:inputText id="card" value="#{purchaseTicket.card}" required="true" 
-                    validator="#{purchaseTicket.validateCard}"  > 
+            <h:inputText id="card" value="#{purchaseTickets.card}" required="true" 
+                    validator="#{purchaseTickets.validateCard}"  > 
             </h:inputText>
-        <h:commandButton value="Enter" action="#{purchaseTicket.showThankYou()}"/>
+        <h:commandButton value="Enter" action="#{purchaseTickets.showThankYou()}"/>
         </h:form>
     </body>
 </html>

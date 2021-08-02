@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/ThankYou.xhtml</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/bean/PurchaseTicket.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/index.xhtml</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/entity/Listtimes.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/ejb/TheaterEJB.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/bean/MainPageBean.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/ShowListTimes.xhtml</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/ShowTheater.xhtml</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/PurchaseTicket.xhtml</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/bean/MoviesBean.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/entity/ListtimesPK.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/entity/Movies.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/entity/Theaters.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/src/java/bean/Theater.java</file>
-            <file>file:/C:/Users/wminc/Documents/NetBeansProjects/Project1/CS_4336_Project/web/ShowMovies.xhtml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
